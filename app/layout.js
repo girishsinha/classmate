@@ -1,8 +1,10 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "../components/ui/theme-provider"
-import { SidebarProvider, SidebarTrigger, useSidebar } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/ui/AppSidebar";
+import { ThemeProvider } from "@/components/theme-provider"
+// import { SidebarLeft } from "./components/sidebar-left";
+// import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+// import { SidebarInset } from "./components/ui/sidebar";
+// import { Separator } from "@/components/ui/separator";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,14 +33,11 @@ export default function RootLayout({ children }) {
           enableSystem
           disableTransitionOnChange
         >
-          <SidebarProvider>
-            <AppSidebar />
-            <div className=" w-full h-18 border-b absolute flex gap-2 "> </div>
-            <div className="w-full max-h-full">
-
-              {children}
-            </div>
-          </SidebarProvider>
+          {/* <SidebarProvider> */}
+          {/* <div className="bg-muted/50 mx-auto h-24 w-full max-w-3xl rounded-xl" /> */}
+          {children}
+          {/* <div className="bg-muted/50 mx-auto h-[100vh] w-full max-w-3xl rounded-xl" /> */}
+          {/* </SidebarProvider> */}
         </ThemeProvider>
       </body>
     </html>

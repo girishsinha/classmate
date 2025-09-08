@@ -1,11 +1,12 @@
 "use client";
 import Image from "next/image";
-// import Sidebar from "./components/Sidebar";
+// import Sidebar from "./app/components/Sidebar";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 
 export default function Home() {
@@ -68,56 +69,13 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col justify-center items-center h-screen">
 
       {/* Chat Window */}
-      <div className="h-[90vh] p-6 overflow-y-scroll">
-        <div className="p-18 space-y-4">
-          {messages.map((msg, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
-              className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
-            >
-              <Card
-                className={`max-w-[70%] px-4 py-2 ${msg.role === "user"
-                  ? "bg-primary rounded-br-none"
-                  : " border shadow rounded-bl-none"
-                  }`}
-              >
-                <CardContent className="p-0">{msg.content}</CardContent>
-                {msg.reference && <CardContent className="text-gray-500 text-sm p-0">{msg.reference}</CardContent>}
-              </Card>
-            </motion.div>
-          ))}
-          {loading && (
-            <p className="text-gray-500 text-sm">Instructor is typing...</p>
-          )}
-        </div>
-      </div>
-      {/* Input Box */}
-      <form
-        onSubmit={sendMessage}
-        className="p-4 border-t flex gap-2 "
-      >
-        <Input
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Ask your course doubt..."
-          className="flex-1"
-        />
-
-        <Button type="submit" disabled={loading}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-up size-3.5"><path d="m5 12 7-7 7 7"></path><path d="M12 19V5"></path></svg>
-        </Button>
-        <Button type="button" className={loadingbutton ? "bg-sidebar" : ""} onClick={async () => setInput(await enhanceQuery(input))}
-          disabled={loadingbutton}>
-          {loadingbutton ? <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect fill="#DD4301" stroke="#DD4301" strokeWidth="15" width="30" height="30" x="25" y="50"><animate attributeName="y" calcMode="spline" dur="2" values="50;120;50;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.4" /></rect><rect fill="#DD4301" stroke="#DD4301" stroke-width="15" width="30" height="30" x="85" y="50"><animate attributeName="y" calcMode="spline" dur="2" values="50;120;50;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.2" /></rect><rect fill="#DD4301" stroke="#DD4301" strokeWidth="15" width="30" height="30" x="145" y="50"><animate attributeName="y" calcMode="spline" dur="2" values="50;120;50;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="0" /></rect></svg> : "Enhance Query"}
-        </Button>
-
-      </form>
+      <Link href={"/chats"}>
+        <Button >
+          Get Started 🚀</Button>
+      </Link>
     </div >
 
   );
